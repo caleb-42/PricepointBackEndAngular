@@ -2,6 +2,8 @@
 
 session_start();
 print (isset($_SESSION['user']));
+$_SESSION['user_name'] = 'webplay';
+$_SESSION['role'] = 'admin';
 if(!isset($_SESSION['user_name'])){
    // header("Location: logIn.php");
 }
@@ -96,7 +98,7 @@ $templates = ["Dashboard"=>"./assets/php/partials/dashboard.php","Products"=>"./
 
                     <div class="row mr-5">
                         <img class="rounded-circle mr-2 align-self-center" src="assets/img/avatar.png">
-                        <h6 class="align-self-center font-weight-bold adminref"><?php //echo $_SESSION['username']; ?>ewere</h6>
+                        <h6 class="align-self-center font-weight-bold adminref"><?php echo $_SESSION['user_name']; ?></h6>
                         <a id="logout" href="assets/php/logout.php"><button class = "btn ml-4 btn-purp">
                             Log out
                             </button></a>
@@ -106,9 +108,9 @@ $templates = ["Dashboard"=>"./assets/php/partials/dashboard.php","Products"=>"./
             <div class="" id="tabs" ng-switch on="sidebarnav.navig.activeNav">
                 <?php foreach($templates as $key => $value): ?>
                 <div class  = "<?php echo $key ?>" ng-switch-when = "<?php echo $key; ?>">
-                    <div ng-include  src = "'<?php echo $value; ?>'"></div>
+                    <div ng-include ng-init = "settings.userDefinition('<?php echo $_SESSION['user_name']; ?>', '<?php echo $_SESSION['role']; ?>');" src = "'<?php echo $value; ?>'"></div>
                 </div>
-                <!-- ng-init = "settings.userDefinition('<?php //echo $_SESSION['user_name']; ?>', '<?php //echo $_SESSION['role']; ?>');" -->
+                <!--  -->
                 <?php endforeach;?>
             </div>  
         </div>

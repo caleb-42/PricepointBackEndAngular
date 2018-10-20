@@ -14,25 +14,23 @@ function __autoload($class_name){
 } */
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-	call_user_func($_GET["act"], array($_GET["arg"]));
+	call_user_func($_GET["act"], $_GET["arg"]);
 }
 
 function select_operation($arg){
+    //echo 'ewere';
     //$arg[0] != 'products' ? print_r($arg) : 'null';
+    // /print_r($args);
     $dbobj = new Db_object();
-    $args = explode(",",$arg[0]);
-    if(count($args) == 1){
-        $users = Db_object::select_object($args[0]);
+    $args = json_decode($arg, true);
+    //print_r($args);
+    if(!isset($args['qcol'])){
+        $users = Db_object::select_object($args['tb']);
     }else{
-        $tb = array_shift($args);
-        $sign = count($args) % 2 != 0 ? array_pop($args) : "=";
-        $sign = explode("^",$sign);
-        $num = count($args)/2;
-        $args = array_chunk($args,$num); 
-        $col = $args[0];
-        $val = $args[1];
-        $users = Db_object::select_object($tb,$col,$val,$sign);
+        $users = Db_object::select_object($args['tb'],$args['qcol'],$args['qval'],$args['sign']);
     }
+    
+    //print_r($users[3]);
     !empty($users[3]) ? print json_encode($users[3]) : null;
 }
 

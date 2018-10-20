@@ -11,6 +11,12 @@ class Db_object{
     }
     static function select_object($tb,$qcol=null,$qval=null,$cond = ["="]){
         if(isset($tb,$qcol,$qval,$cond)){
+            /* for($i = 0 ; $i < count($qval) ; $i++ ){
+                if(is_numeric($qval[$i])) {
+                    echo $qval[$i];
+                    $qval[$i] = intval($qval[$i]);
+                }
+            } */
             $users = DbHandler::select_cmd([
                 "table" => $tb,
                 "qcol" => $qcol,

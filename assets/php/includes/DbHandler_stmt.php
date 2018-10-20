@@ -1,14 +1,6 @@
 <?php
+class DbHandler{ 
 
-
-class DbHandler{
-    //const HOST = "localhost";
-    /*const DB = "webplayg_mgxdb";
-    const USER = "webplayg_root";
-    const PASS = "webplay";*/
-    /* const DB = "pricepoint";
-    const USER = "root";
-    const PASS = "ewere"; */
     public static $con;
 
     
@@ -200,11 +192,7 @@ class DbHandler{
                     while($row = $dataarr->fetch_assoc()){
                         array_push($data, $row);
                     }
-                    if(!empty($data)){
-                        $assoc = array('0' => 'output', '1' => 'success',  '2' => 'values have been selected', '3' => $data);
-                    }else{
-                        $assoc = array('0' => 'output', '1' => 'empty',  '2' => 'values where not found', '3' => $data);
-                    }
+                    $assoc = array('0' => 'output', '1' => 'success',  '2' => 'values have been selected', '3' => $data);
                     break;
                 case "UPDATE":
                     $assoc = array('0' => 'output', '1' => 'success',  '2' => 'values have been updated');
@@ -337,7 +325,7 @@ class DbHandler{
                                     $adjdata = $mdata;
                                 }
                                 $query .= ");";
-                                //echo $query;
+                                //return $query;
                                 return DbHandler::runQuery($query, $adjdata);
                             }
                         }
@@ -384,7 +372,7 @@ class DbHandler{
                         }
                         
                         $query.= ")" ;
-                        //echo $query;
+                        //return $query;
                         return DbHandler::runQuery($query, $adjdata);
                     }
                 }
