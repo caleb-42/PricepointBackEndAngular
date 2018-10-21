@@ -2,6 +2,9 @@ var app = angular.module('app', ['ngAnimate', 'ngRoute', 'ngSanitize', 'products
 
 app.controller("appctrl", ["$rootScope", "$scope", function ($rootScope, $scope) {
     $rootScope.settings = {
+        emitter: function(evt, param){
+            $rootScope.$emit(evt, param);
+        },
         modal: {
             active: "",
             name: "",
@@ -11,14 +14,18 @@ app.controller("appctrl", ["$rootScope", "$scope", function ($rootScope, $scope)
                 if (typeof (arr) == "string") {
                     $rootScope.settings.modal.msg = "BACKEND CODE ERROR";
                     $rootScope.settings.modal.msgcolor = "choral";
+                    $rootScope.settings.modal.adding = false;
+                    $rootScope.settings.modal.fademsg();
                 } else {
                     $rootScope.settings.modal.msg = arr[1];
-                    if(arr[0] == "OUTPUT"){
+                    if(arr[0] == "output"){
                         $rootScope.settings.modal.msgcolor = "green";
-                        $rootScope.settings.modal.close()
+                        $rootScope.settings.modal.close();
                     }else{
                         $rootScope.settings.modal.msgcolor = "choral";
+                        $rootScope.settings.modal.fademsg();
                     }
+                    $rootScope.settings.modal.adding = false;
                 }
             }
         },

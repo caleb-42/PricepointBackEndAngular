@@ -128,7 +128,7 @@ input[type=number] {
     width: 80px;
     height: 100%;
     margin-left: -250px;
-    overflow-y: hidden;
+    overflow: hidden;
     background: #333;
     -webkit-transition: width 0.5s ease;
     -moz-transition: width 0.5s ease;
@@ -195,7 +195,7 @@ input[type=number] {
     background-color: #111;
 }
 .paneinfo{
-    margin: 20px 20px;
+    margin: 20px 0px;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;

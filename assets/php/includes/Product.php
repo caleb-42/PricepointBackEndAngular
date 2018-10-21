@@ -15,7 +15,7 @@ class Product extends Db_object{
         if(empty($confirm_product_in_db[3])){
             $users = parent::insert_object($tb,$col,$val);
             if($users[1] == "success"){
-                return $users[2];
+                return $users;
             }
         }else{
             return "Product name already taken";
@@ -23,13 +23,15 @@ class Product extends Db_object{
     }
     
     function update_object($arr){
-        $col = array_keys($arr);
-        array_pop($col);
-        $val = array_values($arr);
-        $wval = array_pop($val);
+        $col = array_keys($arr['data']);
+        $val = array_values($arr['data']);
+        
+        $wval = $arr['wval'];
+        $wcol = $arr['wcol'];
+
         $users = parent::update_object("products", $col, $val,["product_name"], [$wval]);
         if($users[1] == "success"){
-            return $users[2];
+            return $users;
         }
     }
     

@@ -1,0 +1,86 @@
+<div class="modal-dialog modal-{{settings.modal.size}}">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title ml-3">{{settings.modal.name}}</h5>
+            <button type="button" class="close" id="closeInvoice" data-dismiss="modal" onclick=" ">×</button>
+        </div>
+        <div class="modal-body nopadding">
+
+            <!--....... Product Start ......... -->
+            <div class="w-100" ng-if="settings.modal.active == 'Product'">
+                <div class="w-100" ng-if="settings.modal.name == 'Add Product'">
+                    <form class="p-4 w-100 addProductForm row justify-content-center m-0">
+                        <label class="text-primary inputtext w-100">Name</label>
+                        <input type="text" name="product_name" class="form-control inputadjust textadjust">
+                        <label class="text-primary inputtext w-100 mt-3">Description</label>
+                        <textarea rows=2 type="text" name="product_description" class="textadjust form-control text-center"></textarea>
+                        <label class="text-primary inputtext w-100 mt-3">Retail Price</label>
+                        <input type="number" name="product_retailprice" class="form-control inputadjust textadjust" onkeydown="javascript: return event.keyCode !=69">
+                        <label class="text-primary inputtext w-100 mt-3" >Wholesale Price</label>
+                        <input type="number" name="product_wholesaleprice" class="form-control inputadjust textadjust" onkeydown="javascript: return event.keyCode !=69">
+                    </form>
+                    <div class="modal-footer w-100">
+                        <div class="justify-content-center w-100 d-flex flex-column">
+                            <div class="py-1 row justify-content-center w-100">
+                                <div ng-class="{gone : !settings.modal.adding}"><img src="./assets/img/loader.gif" width="150px"
+                                        height="110px" /></div>
+                                <button type="button" class="{{settings.modal.adding ? 'gone' : ''}} b-0 btn btn-success"
+                                    onclick="addProduct('.addProductForm')">
+                                    {{settings.modal.name | limitTo:3}}
+                                </button>
+                            </div>
+                            <div class="row pt-3 justify-content-center">
+                                <p class="{{settings.modal.msgcolor}} report f-14">{{settings.modal.msg}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="w-100" ng-if="settings.modal.name == 'Update Product'">
+                    <div class=" p-4 w-100">
+                        <div class="float-left w-45 inpRead row m-0">
+                            <label class="text-primary inputtext w-100">Name</label>
+                            <input type="text" name="product_name" class="form-control inputadjust textadjust" readonly>
+                            <label class="text-primary inputtext w-100 mt-3">Description</label>
+                            <textarea rows=2 type="text" name="product_description" class="form-control text-center textadjust" readonly></textarea>
+                            <label class="text-primary inputtext w-100 mt-3">Retail Price</label>
+                            <input type="number" name="product_retailprice" value = 'power' class="form-control inputadjust textadjust" readonly>
+                            <label class="text-primary inputtext w-100 mt-3">Wholesale Price</label>
+                            <input type="number" name="product_wholesaleprice" class="form-control inputadjust textadjust" readonly>
+                        </div>
+                        <form autocomplete="off" class="updateProductForm float-right w-45 row m-0 justify-content-center">
+                            <label class="text-primary inputtext w-100">Name</label>
+                            <input type="text" name="product_name" class="form-control inputadjust textadjust">
+                            <label class="text-primary inputtext w-100 mt-3">Description</label>
+                            <textarea rows=2 type="text" name="product_description" class="textadjust form-control text-center"></textarea>
+                            <label class="text-primary inputtext w-100 mt-3">Retail Price</label>
+                            <input type="number" name="product_retailprice" class="form-control inputadjust textadjust">
+                            <label class="text-primary inputtext w-100 mt-3">Wholesale Price</label>
+                            <input type="number" name="product_wholesaleprice" class="form-control inputadjust textadjust">
+                        </form>
+                    </div>
+                    <div class="modal-footer w-100">
+                        <div class="justify-content-center w-100 d-flex flex-column">
+                            <div class="py-1 row justify-content-center w-100">
+                                <div ng-class="{gone : !settings.modal.adding}"><img src="./assets/img/loader.gif" width="150px"
+                                        height="1100px" /></div>
+
+                                <button type="button" class="{{settings.modal.adding ? 'gone' : ''}} b-0 btn btn-success"
+                                    onclick="updateProduct()">
+                                    {{settings.modal.name | limitTo:7}}
+                                </button>
+                            </div>
+                            <div class="row pt-3 justify-content-center">
+                                <p class="{{settings.modal.msgcolor}} report f-14">{{settings.modal.msg}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--....... Product End ......... -->
+
+        </div>
+    </div>
+</div>

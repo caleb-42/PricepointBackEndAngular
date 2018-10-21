@@ -35,26 +35,19 @@ function select_operation($arg){
 }
 
 function add_operation($arg){
-    $arg = str_replace("^", "&", $arg[0]);
-    $arr = array();
-    parse_str($arg, $arr);
-    //print_r($arr);
-    $class_name = array_pop($arr);
-    //print_r($class_name);
+    //print_r($arg);
+    $args = json_decode($arg, true);
+    $class_name = $args['obj'];
     $dbObj = new $class_name();
-    echo $dbObj->insert_object($arr);
+    echo json_encode($dbObj->insert_object($args['data']));
     backup($_GET["sess"]);
 }
 
 function update_operation($arg){
-    $arg = str_replace("^", "&", $arg[0]);
-    $arr = array();
-    parse_str($arg, $arr);
-    /*print_r($arr);*/
-    $class_name = array_pop($arr);
-    //print_r($class_name);
+    $args = json_decode($arg, true);
+    $class_name = $args['obj'];
     $dbObj = new $class_name();
-    echo $dbObj->update_object($arr);
+    echo json_encode($dbObj->update_object($args));
     backup($_GET["sess"]);
 }
 
